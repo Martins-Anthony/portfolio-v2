@@ -10,6 +10,8 @@ export const ReactIcon = (
       viewBox="0 0 256 228"
       version="1.1"
       preserveAspectRatio="xMidYMid"
+      role='icon'
+      aria-label='icon React.js'
       {...props}
     >
       <g>

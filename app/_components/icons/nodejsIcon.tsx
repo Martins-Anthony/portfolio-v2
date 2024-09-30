@@ -10,6 +10,8 @@ export const NodejsIcon = (
       viewBox="0 0 256 289"
       version="1.1"
       preserveAspectRatio="xMidYMid"
+      role='icon'
+      aria-label='icon Node.js'
       {...props}
     >
       <g>

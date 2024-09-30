@@ -10,6 +10,8 @@ export const TailwindIcon = (
       viewBox="0 0 256 154"
       version="1.1"
       preserveAspectRatio="xMidYMid"
+      role='icon'
+      aria-label='icon Tailwind'
       {...props}
     >
       <defs>

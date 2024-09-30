@@ -10,6 +10,8 @@ export const GithubIcon = (
       viewBox="0 0 256 250"
       version="1.1"
       preserveAspectRatio="xMidYMid"
+      role='icon'
+      aria-label='icon GitHub'
       {...props}
     >
       <g>
