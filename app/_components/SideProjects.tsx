@@ -1,19 +1,19 @@
-import { Home } from "lucide-react";
-import type { LucideIcon } from "lucide-react";
-import Link from "next/link";
+import { Home } from 'lucide-react';
+import type { LucideIcon } from 'lucide-react';
+import Link from 'next/link';
 
 export const SIDE_PROJECTS: SideProjectProps[] = [
   {
     Logo: Home,
-    title: "Home",
-    description: "A simple website made with Next.js and Tailwind CSS.",
-    url: "/",
+    title: 'Home',
+    description: 'A simple website made with Next.js and Tailwind CSS.',
+    url: '/',
   },
   {
     Logo: Home,
-    title: "Portfolio",
-    description: "My personal portfolio website.",
-    url: "/",
+    title: 'Portfolio',
+    description: 'My personal portfolio website.',
+    url: '/',
   },
 ];
 

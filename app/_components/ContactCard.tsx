@@ -19,7 +19,9 @@ export const ContactCard = (props: ContactCardProps) => {
       <Card className="p-3 bg-accent/10 hover:bg-accent/30 transition-colors flex group items-center gap-4">
         <div className="relative w-10 h-10">
           {props.icon ? (
-            <div className="w-10 h-10 rounded-full object-contain">{props.icon}</div>
+            <div className="w-10 h-10 rounded-full object-contain">
+              {props.icon}
+            </div>
           ) : (
             <img
               src={props.image}

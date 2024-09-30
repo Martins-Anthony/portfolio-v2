@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import { buttonVariants } from '@/components/ui/button';
 import { Section } from './Section';
@@ -19,7 +19,10 @@ export const Header = () => {
   return (
     <header className="sticky top-0 py-4 z-10" id="header">
       <Section className="flex items-baseline">
-        <h1 className="text-lg font-bold text-primary hover:text-secondary-foreground hover:cursor-pointer" onClick={handleClick}>
+        <h1
+          className="text-lg font-bold text-primary hover:text-secondary-foreground hover:cursor-pointer"
+          onClick={handleClick}
+        >
           webcraft-anthony
         </h1>
         <div className="flex-1" />
