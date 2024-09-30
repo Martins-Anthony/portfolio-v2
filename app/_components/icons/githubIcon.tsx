@@ -1,7 +1,7 @@
-import { ComponentPropsWithoutRef } from "react";
+import { ComponentPropsWithoutRef } from 'react';
 
 export const GithubIcon = (
-  props: ComponentPropsWithoutRef<"svg"> & { size?: number },
+  props: ComponentPropsWithoutRef<'svg'> & { size?: number }
 ) => {
   return (
     <svg
@@ -10,8 +10,8 @@ export const GithubIcon = (
       viewBox="0 0 256 250"
       version="1.1"
       preserveAspectRatio="xMidYMid"
-      role='icon'
-      aria-label='icon GitHub'
+      role="icon"
+      aria-label="icon GitHub"
       {...props}
     >
       <g>

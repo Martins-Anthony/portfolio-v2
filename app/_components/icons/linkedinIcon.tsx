@@ -3,7 +3,7 @@ import { ComponentPropsWithoutRef } from 'react';
 export const LinkedinIcon = (
   props: ComponentPropsWithoutRef<'svg'> & { size?: number; fill?: string }
 ) => {
-  const { size = 24, fill = 'currentColor', ...restProps } = props;
+  const { size = 24, fill = 'currentColor' } = props;
 
   return (
     <svg
@@ -12,8 +12,8 @@ export const LinkedinIcon = (
       viewBox="0 0 256 256"
       version="1.1"
       preserveAspectRatio="xMidYMid"
-      role='icon'
-      aria-label='icon Linkedin'
+      role="icon"
+      aria-label="icon Linkedin"
       {...props}
     >
       <g>

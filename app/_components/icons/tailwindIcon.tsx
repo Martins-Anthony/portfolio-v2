@@ -1,7 +1,7 @@
-import { ComponentPropsWithoutRef } from "react";
+import { ComponentPropsWithoutRef } from 'react';
 
 export const TailwindIcon = (
-  props: ComponentPropsWithoutRef<"svg"> & { size?: number },
+  props: ComponentPropsWithoutRef<'svg'> & { size?: number }
 ) => {
   return (
     <svg
@@ -10,8 +10,8 @@ export const TailwindIcon = (
       viewBox="0 0 256 154"
       version="1.1"
       preserveAspectRatio="xMidYMid"
-      role='icon'
-      aria-label='icon Tailwind'
+      role="icon"
+      aria-label="icon Tailwind"
       {...props}
     >
       <defs>

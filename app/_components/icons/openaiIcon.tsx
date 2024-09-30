@@ -1,7 +1,7 @@
-import { ComponentPropsWithoutRef } from "react";
+import { ComponentPropsWithoutRef } from 'react';
 
 export const OpenaiIcon = (
-  props: ComponentPropsWithoutRef<"svg"> & { size?: number },
+  props: ComponentPropsWithoutRef<'svg'> & { size?: number }
 ) => {
   return (
     <svg
@@ -10,8 +10,8 @@ export const OpenaiIcon = (
       viewBox="0 0 256 256"
       version="1.1"
       preserveAspectRatio="xMidYMid"
-      role='icon'
-      aria-label='icon OpenAI'
+      role="icon"
+      aria-label="icon OpenAI"
       {...props}
     >
       <title>OpenAI</title>

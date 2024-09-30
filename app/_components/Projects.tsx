@@ -24,7 +24,7 @@ export const Projects: React.FC = () => {
         );
         const data = await response.json();
 
-        const sortedRepos = data.sort((a: Repo, b: Repo) => {
+        data.sort((a: Repo, b: Repo) => {
           return (
             new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime()
           );

@@ -1,4 +1,6 @@
+import Image from 'next/image';
 import { Section } from './layouts/Section';
+import profilePicture from '../_components/images/profil_Anthony_martins_500_500.jpg';
 
 export const Hero = () => {
   return (
@@ -11,17 +13,19 @@ export const Hero = () => {
           Développeur web React.js{' '}
         </h3>
         <p className="max-md:text-sm text-base">
-          Passionné par la création d'expériences web modernes et performantes,
+          Passionné par la création d&apos;expériences web modernes et
+          performantes,
           <br />
-          j'allie créativité et expertise technique pour développer des
+          j&apos;allie créativité et expertise technique pour développer des
           solutions sur mesure.
         </p>
       </div>
       <div className="flex-[2] m-auto flex justify-center ">
-        <img
-          src="https://media.licdn.com/dms/image/v2/D4E03AQEiQ5beBg_5iQ/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1718814117351?e=1732752000&v=beta&t=mm3UO9qBci6O6M4K_y0pzaafQQRe8-BV_SXKXF1Fab4"
+        <Image
+          src={profilePicture}
           alt="Anthony's picture"
-          className=" h-auto max-md:w-44 max-md:mt-10 w-56 rounded-full"
+          className="h-auto max-md:w-44 max-md:mt-10 w-56 rounded-full ml-8"
+          priority={true}
         />
       </div>
     </Section>

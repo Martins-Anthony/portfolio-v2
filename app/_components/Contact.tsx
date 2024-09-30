@@ -1,10 +1,5 @@
 import { Badge } from '@/components/ui/badge';
 import { Section } from './layouts/Section';
-import { ContactCard } from './ContactCard';
-import { LinkedinIcon } from './icons/linkedinIcon';
-import { GmailIcon } from './icons/gmailIcon';
-import { MaltIcon } from './icons/maltIcon';
-import { WebcraftAnthonyIcon } from './icons/webcraftAnthonyIcon';
 import { ContactList } from './ContactList';
 
 export const Contact = () => {

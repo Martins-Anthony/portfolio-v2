@@ -1,7 +1,7 @@
-import { ComponentPropsWithoutRef } from "react";
+import { ComponentPropsWithoutRef } from 'react';
 
 export const ReactIcon = (
-  props: ComponentPropsWithoutRef<"svg"> & { size?: number },
+  props: ComponentPropsWithoutRef<'svg'> & { size?: number }
 ) => {
   return (
     <svg
@@ -10,8 +10,8 @@ export const ReactIcon = (
       viewBox="0 0 256 228"
       version="1.1"
       preserveAspectRatio="xMidYMid"
-      role='icon'
-      aria-label='icon React.js'
+      role="icon"
+      aria-label="icon React.js"
       {...props}
     >
       <g>

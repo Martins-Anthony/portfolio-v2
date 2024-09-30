@@ -3,7 +3,7 @@ import { ComponentPropsWithoutRef } from 'react';
 export const GmailIcon = (
   props: ComponentPropsWithoutRef<'svg'> & { size?: number }
 ) => {
-  const { size = 24, ...restProps } = props;
+  const { size = 24 } = props;
 
   return (
     <svg
@@ -12,8 +12,8 @@ export const GmailIcon = (
       viewBox="0 0 256 193"
       version="1.1"
       preserveAspectRatio="xMidYMid"
-      role='icon'
-      aria-label='icon Gmail'
+      role="icon"
+      aria-label="icon Gmail"
       {...props}
     >
       <g>

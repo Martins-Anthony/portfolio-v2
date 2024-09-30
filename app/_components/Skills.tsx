@@ -23,7 +23,7 @@ export const Skills = () => {
             React
           </h3>
           <p className="text-sm text-muted-foreground">
-            Mon framework principal est <Code>React</Code>.<br /> J'utilise
+            Mon framework principal est <Code>React</Code>.<br /> J&apos;utilise
             également <Code>Next.js</Code> comme framework backend & frontend.
           </p>
         </div>
@@ -44,8 +44,8 @@ export const Skills = () => {
             Node.js
           </h3>
           <p className="text-sm text-muted-foreground">
-            J'utilise <Code>Node.js</Code> pour construire des APIs performantes
-            et évoluer sur des projets full-stack.
+            J&apos;utilise <Code>Node.js</Code> pour construire des APIs
+            performantes et évoluer sur des projets full-stack.
           </p>
         </div>
       </div>

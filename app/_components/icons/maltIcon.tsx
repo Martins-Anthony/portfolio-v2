@@ -3,7 +3,7 @@ import { ComponentPropsWithoutRef } from 'react';
 export const MaltIcon = (
   props: ComponentPropsWithoutRef<'svg'> & { size?: number; fill?: string }
 ) => {
-  const { size = 24, fill = 'currentColor', ...restProps } = props;
+  const { size = 24, fill = 'currentColor' } = props;
   return (
     <svg
       width={size}
