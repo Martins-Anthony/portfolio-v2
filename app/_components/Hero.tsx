@@ -1,0 +1,29 @@
+import { Section } from './layouts/Section';
+
+export const Hero = () => {
+  return (
+    <Section className="flex max-md:flex-col items-start gap-4">
+      <div className="flex-[3] w-full flex flex-col gap-2">
+        <h2 className="font-caption font-bold max-md:text-4xl text-5xl text-primary">
+          Anthony Martins
+        </h2>
+        <h3 className="max-md:text-xl text-3xl font-caption">
+          Développeur web React.js{' '}
+        </h3>
+        <p className="max-md:text-sm text-base">
+          Passionné par la création d'expériences web modernes et performantes,
+          <br />
+          j'allie créativité et expertise technique pour développer des
+          solutions sur mesure.
+        </p>
+      </div>
+      <div className="flex-[2] m-auto flex justify-center ">
+        <img
+          src="https://media.licdn.com/dms/image/v2/D4E03AQEiQ5beBg_5iQ/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1718814117351?e=1732752000&v=beta&t=mm3UO9qBci6O6M4K_y0pzaafQQRe8-BV_SXKXF1Fab4"
+          alt="Anthony's picture"
+          className=" h-auto max-md:w-44 max-md:mt-10 w-56 rounded-full"
+        />
+      </div>
+    </Section>
+  );
+};
