@@ -60,7 +60,7 @@ export const Projects: React.FC = () => {
             Logo={SIDE_PROJECTS[0].Logo}
             title={repo.name}
             description={repo.description}
-            url={repo.homepage || repo.html_url }
+            url={repo.homepage || repo.html_url}
           />
         </CarouselItem>
       ))}
