@@ -15,12 +15,16 @@ import { ContactList } from './ContactList';
 
 export const Status = () => {
   const [carouselMaxHeight, setCarouselMaxHeight] = useState<number>(352);
+  const [rightColumnRefForPortal, setRightColumnRefForPortal] =
+    useState<number>(0);
   const rightColumnRef = useRef<HTMLDivElement>(null);
 
   const updateCarouselHeight = () => {
     if (rightColumnRef.current) {
       const rightColumnHeight = rightColumnRef.current.offsetHeight;
+      const rightColumnWidth = rightColumnRef.current.offsetWidth;
       setCarouselMaxHeight(rightColumnHeight - 142);
+      setRightColumnRefForPortal(rightColumnWidth);
     }
   };
 
@@ -49,7 +53,7 @@ export const Status = () => {
                 className="w-full p-1 mt-1 flex gap-2 h-full"
                 style={{ maxHeight: `${carouselMaxHeight}px` }}
               >
-                <Projects />
+                <Projects refForPortal={rightColumnRefForPortal} />
               </CarouselContent>
               <CarouselPrevious />
               <CarouselNext />

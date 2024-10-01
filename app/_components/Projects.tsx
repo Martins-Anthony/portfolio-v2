@@ -13,7 +13,9 @@ interface Repo {
   updated_at: string;
 }
 
-export const Projects: React.FC = () => {
+export const Projects: React.FC<{ refForPortal: number }> = ({
+  refForPortal,
+}) => {
   const [repos, setRepos] = useState<Repo[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
 
@@ -55,12 +57,16 @@ export const Projects: React.FC = () => {
   return (
     <>
       {repos.map((repo) => (
-        <CarouselItem className="pt-0 basis-1/6 w-full" key={repo.id}>
+        <CarouselItem
+          className="pt-0 basis-1/6 w-full overflow-visible relative"
+          key={repo.id}
+        >
           <SideProject
             Logo={SIDE_PROJECTS[0].Logo}
             title={repo.name}
             description={repo.description}
             url={repo.homepage || repo.html_url}
+            refForPortal={refForPortal}
           />
         </CarouselItem>
       ))}
