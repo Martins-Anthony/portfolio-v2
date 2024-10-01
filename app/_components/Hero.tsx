@@ -24,7 +24,7 @@ export const Hero = () => {
         <Image
           src={profilePicture}
           alt="Anthony's picture"
-          className="h-auto max-md:w-44 max-md:mt-10 w-56 rounded-full ml-8"
+          className="h-auto max-md:w-44 max-md:mt-10 w-56 rounded-full ml-0"
           priority={true}
         />
       </div>

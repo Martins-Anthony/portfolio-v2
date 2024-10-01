@@ -7,7 +7,7 @@ export const WORKS: WorkProps[] = [
     image: 'https://anti-corruption-enquete-investigation.org/logo98',
     title: 'Association ACEI',
     role: 'Développeur web',
-    date: '2024 - 2024',
+    date: 'Avril 2024 - Mai 2024',
     url: 'https://anti-corruption-enquete-investigation.org/',
   },
   {
@@ -15,7 +15,7 @@ export const WORKS: WorkProps[] = [
       'https://media.licdn.com/dms/image/v2/D4E0BAQGGjlGUHa2png/company-logo_100_100/company-logo_100_100/0/1665412802239/openclassrooms_logo?e=1735171200&v=beta&t=elE8nBspC_5Fd-SUVPP_lilBIilo3GZCtdtiDMx8XNQ',
     title: 'OpenClassrooms',
     role: 'formation intégrateur web',
-    date: '2023 - 2024',
+    date: 'Juillet 2023 - Avril 2024',
     url: 'https://openclassrooms.com/fr/',
   },
 ];

@@ -9,7 +9,7 @@ export const ContactList = () => {
     <>
       <ContactCard
         className="flex-1"
-        name="contact@webcraft-anthony.com"
+        name="c@webcraft-anthony.com"
         icon={<GmailIcon size={32} />}
         description="Contactez-moi directement par email."
         url="mailto:contact@webcraft-anthony.com"
