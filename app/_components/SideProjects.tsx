@@ -1,7 +1,6 @@
 'use client';
 
-import { Home } from 'lucide-react';
-import type { LucideIcon } from 'lucide-react';
+import { Globe } from 'lucide-react';
 import Link from 'next/link';
 import {
   Tooltip,
@@ -12,34 +11,43 @@ import {
 import { Portal } from '@radix-ui/react-tooltip';
 import { useEffect, useState } from 'react';
 
-export const SIDE_PROJECTS: SideProjectProps[] = [
-  {
-    Logo: Home,
-    title: 'Home',
-    description: 'A simple website made with Next.js and Tailwind CSS.',
-    url: '/',
-    refForPortal: 0,
-  },
-  {
-    Logo: Home,
-    title: 'Portfolio',
-    description: 'My personal portfolio website.',
-    url: '/',
-    refForPortal: 1,
-  },
-];
-
 type SideProjectProps = {
-  Logo: LucideIcon;
   title: string;
   description: string;
   url: string;
   refForPortal: number;
 };
 
+const checkImageExists = (url: string): Promise<boolean> => {
+  return new Promise((resolve) => {
+    const img = new Image();
+    img.src = url;
+    img.onload = () => resolve(true);
+    img.onerror = () => resolve(false);
+  });
+};
+
+const checkIconExists = async (baseUrl: string): Promise<string | null> => {
+  const iconPaths = ['', 'assets'];
+
+  const iconNames = ['favicon.ico', 'logo98.png', 'logo192.png'];
+
+  for (const path of iconPaths) {
+    for (const iconName of iconNames) {
+      const iconUrl = `${baseUrl}/${path ? `${path}/` : ''}${iconName}`;
+      const exists = await checkImageExists(iconUrl);
+      if (exists) {
+        return iconUrl;
+      }
+    }
+  }
+  return null;
+};
+
 export const SideProject = (props: SideProjectProps) => {
   const [isMobile, setIsMobile] = useState(false);
   const [imageUrl, setImageUrl] = useState<string | null>(null);
+  const [iconUrl, setIconUrl] = useState<string | null>(null);
 
   const generateImageUrl = (folder: string) =>
     `https://raw.githubusercontent.com/martins-Anthony/${props.title}/master/${folder}/screenshot.png`;
@@ -85,6 +93,31 @@ export const SideProject = (props: SideProjectProps) => {
     findValidImageUrl();
   }, [props.title]);
 
+  useEffect(() => {
+    const findValidIcon = async () => {
+      const baseUrl = props.url;
+      const iconUrl = await checkIconExists(baseUrl);
+
+      if (iconUrl) {
+        setIconUrl(iconUrl);
+      } else {
+        setIconUrl(null);
+      }
+    };
+
+    findValidIcon();
+  }, [props.url]);
+
+  const IconToShow = iconUrl ? (
+    <img
+      src={iconUrl ?? undefined}
+      alt={`${props.title} icon`}
+      className="w-16"
+    />
+  ) : (
+    <Globe size={16} />
+  );
+
   return (
     <TooltipProvider>
       <Tooltip delayDuration={300}>
@@ -94,10 +127,10 @@ export const SideProject = (props: SideProjectProps) => {
             className="inline-flex items-center gap-4 hover:bg-accent/50 transition-colors p-1 rounded"
           >
             <span
-              className="bg-accent text-accent-foreground p-3 rounded-sm"
+              className="bg-accent text-accent-foreground p-3 rounded-sm max-w-[40px] max-h-[40px] "
               title={`Logo de ${props.title}`}
             >
-              <props.Logo size={16} />
+              {IconToShow}
             </span>
             <div>
               <p className="text-lg font-semibold">{props.title}</p>

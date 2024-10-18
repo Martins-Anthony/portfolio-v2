@@ -1,6 +1,6 @@
 'use client';
 import React, { useEffect, useState } from 'react';
-import { SIDE_PROJECTS, SideProject } from './SideProjects';
+import { SideProject } from './SideProjects';
 import { CarouselItem } from '@/components/ui/carousel';
 import { SkeletonProject } from './Skeletons';
 
@@ -62,7 +62,6 @@ export const Projects: React.FC<{ refForPortal: number }> = ({
           key={repo.id}
         >
           <SideProject
-            Logo={SIDE_PROJECTS[0].Logo}
             title={repo.name}
             description={repo.description}
             url={repo.homepage || repo.html_url}
