@@ -19,27 +19,64 @@ type SideProjectProps = {
   refForPortal: number;
 };
 
-const checkImageExists = async (url: string): Promise<boolean> => {
+const checkMultipleImages = async (
+  urls: string[]
+): Promise<{ [key: string]: boolean }> => {
+  const cachedResults: { [key: string]: boolean } = {};
+  const urlsToFetch: string[] = [];
+
+  urls.forEach((url) => {
+    const cache = localStorage.getItem(`image-exists-${url}`);
+    if (cache !== null) {
+      cachedResults[url] = JSON.parse(cache);
+    } else {
+      urlsToFetch.push(url);
+    }
+  });
+
+  if (urlsToFetch.length === 0) {
+    return cachedResults;
+  }
+
   try {
-    const response = await fetch(url, { method: 'HEAD' });
-    return response.ok;
-  } catch {
-    return false;
+    const response = await fetch('/api/checkImages', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ urls: urlsToFetch }),
+    });
+
+    const data = await response.json();
+
+    urlsToFetch.forEach((url) => {
+      localStorage.setItem(`image-exists-${url}`, JSON.stringify(data[url]));
+      cachedResults[url] = data[url];
+    });
+
+    return cachedResults;
+  } catch (error) {
+    console.error('Erreur lors de la vérification des images:', error);
+    return cachedResults;
   }
 };
 
 const checkIconExists = async (baseUrl: string): Promise<string | null> => {
   const iconPaths = ['', 'assets'];
-
   const iconNames = ['favicon.ico', 'logo98.png', 'logo192.png'];
 
-  for (const path of iconPaths) {
-    for (const iconName of iconNames) {
-      const iconUrl = `${baseUrl}/${path ? `${path}/` : ''}${iconName}`;
-      const exists = await checkImageExists(iconUrl);
-      if (exists) {
-        return iconUrl;
-      }
+  const urlsToCheck = iconPaths.flatMap((path) =>
+    iconNames.map(
+      (iconName) =>
+        `${baseUrl.replace(/\/$/, '')}/${path ? `${path}/` : ''}${iconName}`
+    )
+  );
+
+  const results = await checkMultipleImages(urlsToCheck);
+
+  for (const url of urlsToCheck) {
+    if (results[url]) {
+      return url;
     }
   }
   return null;
@@ -73,10 +110,13 @@ export const SideProject = (props: SideProjectProps) => {
   useEffect(() => {
     const findValidImageUrl = async () => {
       const folders = ['assets', 'images'];
-      for (const folder of folders) {
-        const url = generateImageUrl(folder);
-        const exists = await checkImageExists(url);
-        if (exists) {
+
+      const urlsToCheck = folders.map((folder) => generateImageUrl(folder));
+
+      const results = await checkMultipleImages(urlsToCheck);
+
+      for (const url of urlsToCheck) {
+        if (results[url]) {
           setImageUrl(url);
           return;
         }
@@ -141,8 +181,9 @@ export const SideProject = (props: SideProjectProps) => {
                 src={imageUrl}
                 alt={`${props.title} preview`}
                 className="rounded-md shadow-md"
-                width={isMobile ? props.refForPortal - 150 : 442}
-                height={isMobile ? props.refForPortal - 150 : 442}
+                width={isMobile ? props.refForPortal - 150 : props.refForPortal}
+                height={200}
+                priority={true}
               />
             </TooltipContent>
           </Portal>
