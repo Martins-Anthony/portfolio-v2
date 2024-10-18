@@ -9,7 +9,8 @@ import {
   TooltipTrigger,
 } from '@/components/ui/tooltip';
 import { Portal } from '@radix-ui/react-tooltip';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
+import Image from 'next/image';
 
 type SideProjectProps = {
   title: string;
@@ -18,13 +19,13 @@ type SideProjectProps = {
   refForPortal: number;
 };
 
-const checkImageExists = (url: string): Promise<boolean> => {
-  return new Promise((resolve) => {
-    const img = new Image();
-    img.src = url;
-    img.onload = () => resolve(true);
-    img.onerror = () => resolve(false);
-  });
+const checkImageExists = async (url: string): Promise<boolean> => {
+  try {
+    const response = await fetch(url, { method: 'HEAD' });
+    return response.ok;
+  } catch {
+    return false;
+  }
 };
 
 const checkIconExists = async (baseUrl: string): Promise<string | null> => {
@@ -49,17 +50,11 @@ export const SideProject = (props: SideProjectProps) => {
   const [imageUrl, setImageUrl] = useState<string | null>(null);
   const [iconUrl, setIconUrl] = useState<string | null>(null);
 
-  const generateImageUrl = (folder: string) =>
-    `https://raw.githubusercontent.com/martins-Anthony/${props.title}/master/${folder}/screenshot.png`;
-
-  const checkImageExists = (url: string): Promise<boolean> => {
-    return new Promise(async (resolve) => {
-      const img = new Image();
-      img.src = url;
-      img.onload = () => resolve(true);
-      img.onerror = () => resolve(false);
-    });
-  };
+  const generateImageUrl = useCallback(
+    (folder: string) =>
+      `https://raw.githubusercontent.com/martins-Anthony/${props.title}/master/${folder}/screenshot.png`,
+    [props.title]
+  );
 
   useEffect(() => {
     const handleResize = () => {
@@ -91,7 +86,7 @@ export const SideProject = (props: SideProjectProps) => {
     };
 
     findValidImageUrl();
-  }, [props.title]);
+  }, [props.title, generateImageUrl]);
 
   useEffect(() => {
     const findValidIcon = async () => {
@@ -109,15 +104,10 @@ export const SideProject = (props: SideProjectProps) => {
   }, [props.url]);
 
   const IconToShow = iconUrl ? (
-    <img
-      src={iconUrl ?? undefined}
-      alt={`${props.title} icon`}
-      className="w-16"
-    />
+    <Image src={iconUrl} alt={`${props.title} icon`} width={40} height={40} />
   ) : (
     <Globe size={16} />
   );
-
   return (
     <TooltipProvider>
       <Tooltip delayDuration={300}>
@@ -147,15 +137,12 @@ export const SideProject = (props: SideProjectProps) => {
               side={isMobile ? 'top' : 'right'}
               align="center"
             >
-              <img
+              <Image
                 src={imageUrl}
                 alt={`${props.title} preview`}
                 className="rounded-md shadow-md"
-                style={{
-                  width: isMobile
-                    ? `${props.refForPortal - 150}px`
-                    : `${props.refForPortal}px`,
-                }}
+                width={isMobile ? props.refForPortal - 150 : 442}
+                height={isMobile ? props.refForPortal - 150 : 442}
               />
             </TooltipContent>
           </Portal>
